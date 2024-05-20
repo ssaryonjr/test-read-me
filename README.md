@@ -30,7 +30,7 @@ const parseOffer = parse.object({ //Validate that we're receiving an object.
 
 export default class ExampleExperiment implements Experiment<Offer> {
   async validate({ offer }: ExperimentValidationArgs): Promise<Offer> {
-    //JSON offer passed into parseOffer function to validate we're receiving the data we expect from Adobe.
+    //Offer passed into parseOffer func, validating we're receiving the data we expect from Adobe.
     const parsed = parseOffer(offer) //JSON offer passed into parseOffer function to validate we're receiving the data we expect from Adobe.
     return parsed as Offer //Returns the offer otherwise throws an error.
   }
