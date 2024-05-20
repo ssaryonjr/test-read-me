@@ -21,17 +21,17 @@ interface Message {
 const parseOffer = parse.object({ //Validate that we're receiving an object.
   message: parse.array( //Checks that 'message' prop has a value of an array.
     parse.object({ //Checks that values within the array are objects.
-      text: parse.nonEmptyString(), //Custom validation
-      href: parse.string(),
-    })
+      text: parse.nonEmptyString(), //Validate this is a NON empty string
+      href: parse.string(), //Validates this value is a string
+     })
   ),
-  rotationIntervalMs: parse.numberOrOptional();
+  rotationIntervalMs: parse.numberOrOptional(); //Validates value is a number or property isn't listed.
 })
 
 export default class ExampleExperiment implements Experiment<Offer> {
   async validate({ offer }: ExperimentValidationArgs): Promise<Offer> {
-    //Passes offer to parseOffer to validate the data we expect is what we're receiving
-    const parsed = parseOffer(offer)
+    //JSON offer passed into parseOffer function to validate we're receiving the data we expect from Adobe.
+    const parsed = parseOffer(offer) //JSON offer passed into parseOffer function to validate we're receiving the data we expect from Adobe.
     return parsed as Offer //Returns the offer otherwise throws an error.
   }
 }
