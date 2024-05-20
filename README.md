@@ -4,9 +4,9 @@ Banditypes is a tiny schema validation library for TypeScript and JavaScript, de
 
 > Question: Why are we using a schema validation?
 > 
-> Answer: When creating a JSON offer in Adobe Target, there are limited built-in safety measures and error-checking mechanisms. This lack of robust validation often leads to issues such as typos, missing properties, or incorrect values, which can lead to unexpected results being shown in our UI. To address these challenges, we have integrated schema validation into our codebase. This proactive approach ensures that any errors or unexpected issues are identified and resolved early, preventing faulty experiments from being executed. By validating the schema, we can confirm that all required properties  & values are present and correctly formatted before proceeding, thereby maintaining the integrity of our experimental offers.
+> Answer: When creating a JSON offer in Adobe Target, there are limited built-in safety measures and error-checking mechanisms. This lack of robust validation often leads to issues such as typos, missing properties, or incorrect values, which can lead to unexpected results being shown in the user interface. To address these challenges, we have integrated schema validation into our codebase. This proactive approach ensures that any errors or unexpected issues are identified and resolved early, preventing faulty experiments from being executed. By validating the schema, we can confirm that all required properties  & values are present and correctly formatted before proceeding, thereby maintaining the integrity of our experimental offers.
 
-When constructing a new experiment that consumes JSON data from Adobe Target, it is essential to implement schema validation. This validation informs Banditypes of the expected data structure before any logic is applied to the user interface. See the example below.
+When constructing a new experiment that consumes JSON data from Adobe Target, it is essential to implement a schema validation. This validation informs Banditypes of the expected data structure before any logic is applied to the user interface. See the example below.
 
 ```ts
 import parse from '../validation' // 'Parse' is the convention we will be using.
@@ -41,4 +41,7 @@ export default class ExampleExperiment implements Experiment<Offer> {
 }
 ```
 
-`src/validation/index.ts` - A wrapper for Banditypes allows us to customize validation rules for our application. This includes combining native Banditypes methods to create custom helper functions that can be referenced and used across different experiments.
+In the src/validation/index.ts directory, we developed a wrapper for Banditypes to customize validation rules for our application. This wrapper combines native Banditypes methods to create custom helper functions, which can be referenced and used across different experiments. We import all Banditypes (both native and custom) using the parse convention.
+```ts
+import parse from '../validation'
+```
