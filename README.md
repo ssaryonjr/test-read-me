@@ -7,7 +7,6 @@ Banditypes is a tiny schema validation library for TypeScript and JavaScript, de
 ```ts
 import parse from '../validation' // 'Parse' is the convention we will be using.
 
-//Defining the details that should be expected from the offer.
 interface Offer {
   messages: Message[];
   rotationIntervals?: number
@@ -18,10 +17,10 @@ interface Message {
   href: string;
 }
 
-//The constructed banditype schema that will be called during our validation phase of the experiment lifecycle 
-const parseOffer = parse.object({ //Validates that we're receiving an object.
-  message: parse.array( //Checks that the 'message' property has a value of an array.
-    parse.object({ //Validates that any value within the array is an object that conforms to these values.
+//Defining the banditype schema that will be called during our validation phase.
+const parseOffer = parse.object({ //Validate that we're receiving an object.
+  message: parse.array( //Checks that 'message' prop has a value of an array.
+    parse.object({ //Checks that values within the array are objects.
       text: parse.nonEmptyString(), //Custom validation
       href: parse.string(),
     })
